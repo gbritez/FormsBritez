@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <h2>Alumno Form</h2>
+
+    <form [formGroup]="alumnoForm" (ngSubmit)="guardar()">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)"
+                class="text-danger">
+                <div *ngIf="nombre?.hasError('required')">
+                    Nombre es requerido.
+                </div>
+                <div *ngIf="nombre?.hasError('minlength')">
+                    Nombre debe tener al menos 3 caracteres.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" formControlName="apellido">
+            <div *ngIf="apellido?.invalid && (apellido?.dirty || apellido?.touched)"
+                class="text-danger">
+                <div *ngIf="apellido?.hasError('required')">
+                    Apellido es requerido.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email">
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                class="text-danger">
+                <div *ngIf="email?.hasError('email')">
+                    Debe tener formato de email. Ej (test@test.com)
+                </div>
+                <div *ngIf="email?.hasError('required')">
+                    Email es requerido.
+                </div>
+            </div>
+        </div>
+        <button type="submit" [ngClass]="alumnoForm.valid ? 'btn btn-primary' : 'btn btn-secondary'" class="btn btn-primary" [disabled]="!alumnoForm.valid">Guardar</button>
+    </form>
+
+</div>
